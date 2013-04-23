@@ -7,4 +7,4 @@
   :profiles {:dev {:dependencies [[speclj "2.5.0"]]}}
   :plugins [[speclj "2.5.0"]]
   :test-paths ["spec"]
-  :main davy_sockett.core)
+  :main davy-sockett.core)
