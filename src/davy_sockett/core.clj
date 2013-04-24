@@ -6,14 +6,13 @@
 
 
 (defn create-server []
-  (let [davy ( ServerSocket.)]
+  (let [davy (ServerSocket.)]
     (-> davy (.bind (InetSocketAddress. "localhost" 5000)))
-    (binding [*out* (PrintWriter. (.getOutputStream (.accept davy)))]
-      (println "hello world"))))
+    (let [socket (.accept davy)]
+    (binding [*out* (PrintWriter. (.getOutputStream socket))
+              *in* (BufferedReader. (InputStreamReader. (.getInputStream socket)))]
+      (println (read-line))))))
 
 
 (defn -main []
   (create-server))
-
-
-;(println "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n\r\nHello World")))
